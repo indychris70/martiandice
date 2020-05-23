@@ -28,6 +28,8 @@
 
 Welcome to Martian Dice!
 
+<div id="test" class="whiteblock">Test</div>
+
 
 <script type="text/javascript">
 
