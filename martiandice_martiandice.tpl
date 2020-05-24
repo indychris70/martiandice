@@ -25,51 +25,60 @@
     Please REMOVE this comment before publishing your game on BGA
 -->
 
+<div id="play_area">
 
-Welcome to Martian Dice!
-
-<div id="test" class="whiteblock">Test</div>
-
-<div class="scene">
-    <div class="cube">
-        <div class="cube__face cube__face--front">front</div>
-        <div class="cube__face cube__face--back">back</div>
-        <div class="cube__face cube__face--right">right</div>
-        <div class="cube__face cube__face--left">left</div>
-        <div class="cube__face cube__face--top">top</div>
-        <div class="cube__face cube__face--bottom">bottom</div>
+    <div id="die_tray">
+        <div class="scene">
+            <div class="cube">
+                <div class="cube__face cube__face--3">C</div>
+                <div class="cube__face cube__face--4">T</div>
+                <div class="cube__face cube__face--5">Ch</div>
+                <div class="cube__face cube__face--2">H</div>
+                <div class="cube__face cube__face--1">D1</div>
+                <div class="cube__face cube__face--6">D6</div>
+            </div>
+        </div>
+        <div class="scene">
+            <div class="cube">
+                <div class="cube__face cube__face--3">C</div>
+                <div class="cube__face cube__face--4">T</div>
+                <div class="cube__face cube__face--5">Ch</div>
+                <div class="cube__face cube__face--2">H</div>
+                <div class="cube__face cube__face--1">D1</div>
+                <div class="cube__face cube__face--6">D6</div>
+            </div>
+        </div>
+        <p class="radio-group">
+            <label>
+                <input type="radio" name="rotate-cube-side" value="1" /> 1
+            </label>
+            <label>
+                <input type="radio" name="rotate-cube-side" value="2" /> 2
+            </label>
+            <label>
+                <input type="radio" name="rotate-cube-side" value="3" checked /> 3
+            </label>
+            <label>
+                <input type="radio" name="rotate-cube-side" value="4" /> 4
+            </label>
+            <label>
+                <input type="radio" name="rotate-cube-side" value="5" /> 5
+            </label>
+            <label>
+                <input type="radio" name="rotate-cube-side" value="6" /> 6
+            </label>
+        </p>
     </div>
+
+
+    <div id="death_rays" class=""></div>
+    <div id="tanks"></div>
+    <div id="humans"></div>
+    <div id="chickens"></div>
+    <div id="cows"></div>
+
 </div>
-<div class="scene">
-    <div class="cube">
-        <div class="cube__face cube__face--front">front</div>
-        <div class="cube__face cube__face--back">back</div>
-        <div class="cube__face cube__face--right">right</div>
-        <div class="cube__face cube__face--left">left</div>
-        <div class="cube__face cube__face--top">top</div>
-        <div class="cube__face cube__face--bottom">bottom</div>
-    </div>
-</div>
-<p class="radio-group">
-    <label>
-        <input type="radio" name="rotate-cube-side" value="front" checked /> front
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="right" /> right
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="back" /> back
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="left" /> left
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="top" /> top
-    </label>
-    <label>
-        <input type="radio" name="rotate-cube-side" value="bottom" /> bottom
-    </label>
-</p>
+
 
 
 
