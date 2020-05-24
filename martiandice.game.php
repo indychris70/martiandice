@@ -158,6 +158,24 @@ class martiandice extends Table
         (note: each method below must match an input method in martiandice.action.php)
     */
 
+    function rollDice( $numDice ) {
+
+        self::checkAction("rollDice");
+        $rtnArray = array();
+        for ($x = 0; $x < $numDice; $x++) {
+            $rand_num = rand(1,6);
+            array_push($rtnArray, $rand_num);
+        }
+        $player_id = self::getActivePlayerId();
+        self::notifyAllPlayers( "rollDice", clienttranslate( '${player_name} rolled ${rtnArray}' ),
+            array(
+                'player_id' => $player_id,
+                'player_name' => self::getActivePlayerName(),
+                'rtnArray' => $rtnArray
+            )
+        );
+        $this->gamestate->nextState( 'rollDice' );
+    }
     /*
     
     Example:

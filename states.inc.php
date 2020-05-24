@@ -49,55 +49,49 @@
 
 //    !! It is not a good idea to modify this file when a game is running !!
 
+if (!defined('STATE_END_GAME')) {
+    define("STATE_GAME_SETUP", 1);
+    define("STATE_PLAYER_TURN", 10);
+    define("STATE_END_ROUND", 20);
+    define("STATE_GAME_TURN", 30);
+    define("STATE_END_GAME", 99);
+}
  
 $machinestates = array(
 
     // The initial state. Please do not modify.
-    1 => array(
+    STATE_GAME_SETUP => array(
         "name" => "gameSetup",
         "description" => "",
         "type" => "manager",
         "action" => "stGameSetup",
-        "transitions" => array( "" => 2 )
+        "transitions" => array( "" => STATE_PLAYER_TURN )
     ),
     
     // Note: ID=2 => your first state
 
-    2 => array(
+    STATE_PLAYER_TURN => array(
     		"name" => "playerTurn",
-    		"description" => clienttranslate('${actplayer} must play a card or pass'),
-    		"descriptionmyturn" => clienttranslate('${you} must play a card or pass'),
+    		"description" => clienttranslate('${actplayer} roll or pass'),
+    		"descriptionmyturn" => clienttranslate('${you} roll or pass'),
     		"type" => "activeplayer",
-    		"possibleactions" => array( "playCard", "pass" ),
-    		"transitions" => array( "playCard" => 2, "pass" => 2 )
+    		"possibleactions" => array( "rollDice", "pass" ),
+    		"transitions" => array( "rollDice" => STATE_PLAYER_TURN, "pass" => STATE_END_ROUND )
     ),
-    
-/*
-    Examples:
-    
-    2 => array(
-        "name" => "nextPlayer",
-        "description" => '',
-        "type" => "game",
-        "action" => "stNextPlayer",
-        "updateGameProgression" => true,   
-        "transitions" => array( "endGame" => 99, "nextPlayer" => 10 )
-    ),
-    
-    10 => array(
-        "name" => "playerTurn",
-        "description" => clienttranslate('${actplayer} must play a card or pass'),
-        "descriptionmyturn" => clienttranslate('${you} must play a card or pass'),
-        "type" => "activeplayer",
-        "possibleactions" => array( "playCard", "pass" ),
-        "transitions" => array( "playCard" => 2, "pass" => 2 )
-    ), 
 
-*/    
+    STATE_END_ROUND => array(
+        "name" => "endRound",
+        "description" => clienttranslate('${actplayer}\'s round has ended'),
+        "descriptionmyturn" => clienttranslate('${you}r round has ended'),
+        "type" => "game",
+        "action" => "stEndRound",
+        "updateGameProgression" => true,
+        "transitions" => array("beginRound" => STATE_PLAYER_TURN, "gameEnd" => STATE_END_GAME)
+    ),
    
     // Final state.
     // Please do not modify (and do not overload action/args methods).
-    99 => array(
+    STATE_END_GAME => array(
         "name" => "gameEnd",
         "description" => clienttranslate("End of game"),
         "type" => "manager",

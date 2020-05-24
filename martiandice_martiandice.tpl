@@ -48,26 +48,8 @@
                 <div class="cube__face cube__face--6">D6</div>
             </div>
         </div>
-        <p class="radio-group">
-            <label>
-                <input type="radio" name="rotate-cube-side" value="1" /> 1
-            </label>
-            <label>
-                <input type="radio" name="rotate-cube-side" value="2" /> 2
-            </label>
-            <label>
-                <input type="radio" name="rotate-cube-side" value="3" checked /> 3
-            </label>
-            <label>
-                <input type="radio" name="rotate-cube-side" value="4" /> 4
-            </label>
-            <label>
-                <input type="radio" name="rotate-cube-side" value="5" /> 5
-            </label>
-            <label>
-                <input type="radio" name="rotate-cube-side" value="6" /> 6
-            </label>
-        </p>
+
+        <a id="rollDice" href="#">Roll!</a>
     </div>
 
 

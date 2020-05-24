@@ -41,7 +41,12 @@
   	
   	// TODO: defines your action entry points there
 
-
+    public function rollDice() {
+   	    self::setAjaxMode();
+   	    $numDice = self::getArg("numDice", AT_posint, true);
+   	    $result = $this->game->rollDice($numDice);
+   	    self::ajaxResponse();
+    }
     /*
     
     Example:

@@ -28,11 +28,6 @@ function (dojo, declare) {
             // Here, you can init the global variables of your user interface
             // Example:
             // this.myGlobalValue = 0;
-            this.currentClass = "";
-            // set initial side
-            this.changeSide();
-            let radioGroup = document.querySelector('.radio-group');
-            radioGroup.addEventListener( 'change', this.changeSide );
 
         },
         
@@ -62,7 +57,7 @@ function (dojo, declare) {
             }
             
             // TODO: Set up your game interface here, according to "gamedatas"
-            
+            dojo.query( '#rollDice' ).connect( 'onclick', this, 'rollDice' );
  
             // Setup game notifications to handle (see "setupNotifications" method below)
             this.setupNotifications();
@@ -164,23 +159,6 @@ function (dojo, declare) {
         */
 
 
-
-        changeSide: function() {
-            let cubes = document.querySelectorAll('.cube');
-            let radioGroup = document.querySelector('.radio-group');
-            let checkedRadio = radioGroup.querySelector(':checked');
-            let showClass = 'show-' + checkedRadio.value;
-            console.log("currentClass: ", dojo.currentClass);
-            cubes.forEach(function(cube) {
-                if ( dojo.currentClass ) {
-                    cube.classList.remove(dojo.currentClass);
-                }
-                cube.classList.add( showClass );
-            });
-            dojo.currentClass = showClass;
-        },
-
-
         ///////////////////////////////////////////////////
         //// Player's action
         
@@ -194,7 +172,25 @@ function (dojo, declare) {
             _ make a call to the game server
         
         */
-        
+
+        rollDice: function( evt ) {
+            console.log("rollDice called.");
+            if (this.checkAction('rollDice'))    // Check that this action is possible at this moment
+            {
+                console.log("rollDice called");
+                let cubes = document.querySelectorAll('.cube');
+                console.log("there are this many cubes: ", cubes.length);
+                this.ajaxcall("/martiandice/martiandice/rollDice.html", {
+                    numDice: cubes.length
+                }, this, function (result) {
+
+                });
+
+            }
+
+
+        },
+
         /* Example:
         
         onMyMethodToCall1: function( evt )
@@ -247,6 +243,7 @@ function (dojo, declare) {
             console.log( 'notifications subscriptions setup' );
             
             // TODO: here, associate your game notifications with local methods
+            dojo.subscribe( 'rollDice', this, "notif_rollDice" );
             
             // Example 1: standard notification handling
             // dojo.subscribe( 'cardPlayed', this, "notif_cardPlayed" );
@@ -260,7 +257,23 @@ function (dojo, declare) {
         },  
         
         // TODO: from this point and below, you can write your game notifications handling methods
-        
+
+        notif_rollDice: function( notif ) {
+            console.log( 'notif_rollDice' );
+            console.log( notif );
+            let cubes = document.querySelectorAll('.cube');
+            const rollValues = notif.args.rtnArray;
+            console.log("rolled values are ", rollValues);
+            cubes.forEach(function (cube, index) {
+                cube.classList.forEach(className => {
+                    if (className.startsWith('show-')) {
+                        cube.classList.remove(className);
+                    }
+                })
+                // let rollValue = Math.floor(Math.random() * 6) + 1;
+                cube.classList.add('show-' + rollValues[index]);
+            });
+        }
         /*
         Example:
         
