@@ -28,6 +28,11 @@ function (dojo, declare) {
             // Here, you can init the global variables of your user interface
             // Example:
             // this.myGlobalValue = 0;
+            this.currentClass = "";
+            // set initial side
+            this.changeSide();
+            let radioGroup = document.querySelector('.radio-group');
+            radioGroup.addEventListener( 'change', this.changeSide );
 
         },
         
@@ -157,6 +162,23 @@ function (dojo, declare) {
             script.
         
         */
+
+
+
+        changeSide: function() {
+            let cubes = document.querySelectorAll('.cube');
+            let radioGroup = document.querySelector('.radio-group');
+            let checkedRadio = radioGroup.querySelector(':checked');
+            let showClass = 'show-' + checkedRadio.value;
+            console.log("currentClass: ", dojo.currentClass);
+            cubes.forEach(function(cube) {
+                if ( dojo.currentClass ) {
+                    cube.classList.remove(dojo.currentClass);
+                }
+                cube.classList.add( showClass );
+            });
+            dojo.currentClass = showClass;
+        },
 
 
         ///////////////////////////////////////////////////
