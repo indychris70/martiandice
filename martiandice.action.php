@@ -47,6 +47,12 @@
    	    $result = $this->game->rollDice($numDice);
    	    self::ajaxResponse();
     }
+
+    public function pass() {
+   	    self::setAjaxMode();
+   	    $result = $this->game->pass();
+   	    self::ajaxResponse();
+    }
     /*
     
     Example:

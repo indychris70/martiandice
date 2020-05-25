@@ -158,6 +158,11 @@ class martiandice extends Table
         (note: each method below must match an input method in martiandice.action.php)
     */
 
+    function pass( ) {
+        self::checkAction("pass");
+        $this->gamestate->nextState( 'pass' );
+    }
+
     function rollDice( $numDice ) {
 
         self::checkAction("rollDice");
@@ -238,6 +243,12 @@ class martiandice extends Table
         Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
         The action method of state X is called everytime the current game state is set to X.
     */
+
+    function stEndRound() {
+        $this->activeNextPlayer();
+        $this->gamestate->nextState( 'beginRound' );
+
+    }
     
     /*
     

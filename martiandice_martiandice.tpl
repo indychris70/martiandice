@@ -50,6 +50,7 @@
         </div>
 
         <a id="rollDice" href="#">Roll!</a>
+        <a id="pass" href="#">Pass</a>
     </div>
 
 

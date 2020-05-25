@@ -58,6 +58,7 @@ function (dojo, declare) {
             
             // TODO: Set up your game interface here, according to "gamedatas"
             dojo.query( '#rollDice' ).connect( 'onclick', this, 'rollDice' );
+            dojo.query('#pass').connect('onclick', this, 'pass' );
  
             // Setup game notifications to handle (see "setupNotifications" method below)
             this.setupNotifications();
@@ -177,7 +178,7 @@ function (dojo, declare) {
             console.log("rollDice called.");
             if (this.checkAction('rollDice'))    // Check that this action is possible at this moment
             {
-                console.log("rollDice called");
+                console.log("rollDice action is allowed")
                 let cubes = document.querySelectorAll('.cube');
                 console.log("there are this many cubes: ", cubes.length);
                 this.ajaxcall("/martiandice/martiandice/rollDice.html", {
@@ -189,6 +190,16 @@ function (dojo, declare) {
             }
 
 
+        },
+
+        pass: function( evt ) {
+            console.log("pass called");
+            if (this.checkAction('pass')) {
+                console.log("pass action is allowed");
+                this.ajaxcall("martiandice/martiandice/pass.html", {
+
+                }, this, function(result) {});
+            }
         },
 
         /* Example:
@@ -244,6 +255,7 @@ function (dojo, declare) {
             
             // TODO: here, associate your game notifications with local methods
             dojo.subscribe( 'rollDice', this, "notif_rollDice" );
+            dojo.subscribe('pass', this, "notif_pass");
             
             // Example 1: standard notification handling
             // dojo.subscribe( 'cardPlayed', this, "notif_cardPlayed" );
@@ -273,6 +285,12 @@ function (dojo, declare) {
                 // let rollValue = Math.floor(Math.random() * 6) + 1;
                 cube.classList.add('show-' + rollValues[index]);
             });
+        },
+
+        notif_pass: function (notif) {
+            console.log("notif_pass called");
+            console.log(notif);
+
         }
         /*
         Example:
