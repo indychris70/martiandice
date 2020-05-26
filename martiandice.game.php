@@ -133,9 +133,14 @@ class martiandice extends Table
     */
     function getGameProgression()
     {
-        // TODO: compute and return the game progression
-
-        return 0;
+        $sql = "SELECT MAX(player_score) score from player";
+        $max_score = self::getUniqueValueFromDB( $sql );
+        $progress = round( ( $max_score / 25 ) * 100 );
+        if ( $progress > 100 ) {
+            return 100;
+        } else {
+            return $progress;
+        }
     }
 
 
@@ -146,6 +151,22 @@ class martiandice extends Table
     /*
         In this space, you can put any utility methods useful for your game logic
     */
+    function dbGetScore($player_id) {
+        return $this->getUniqueValueFromDB("SELECT player_score FROM player WHERE player_id='$player_id'");
+    }
+
+    function dbSetScore($player_id, $count) {
+        $this->DbQuery("UPDATE player SET player_score='$count' WHERE player_id='$player_id'");
+    }
+
+    function dbIncScore($player_id, $inc) {
+        $count = $this->dbGetScore($player_id);
+        if ($inc != 0) {
+            $count += $inc;
+            $this->dbSetScore($player_id, $count);
+        }
+        return $count;
+    }
 
 
 
@@ -172,10 +193,14 @@ class martiandice extends Table
             array_push($rtnArray, $rand_num);
         }
         $player_id = self::getActivePlayerId();
-        self::notifyAllPlayers( "rollDice", clienttranslate( '${player_name} rolled ${rtnArray}' ),
+        $points_scored = 1;
+        $player_score = self::dbIncScore($player_id, $points_scored);
+        self::notifyAllPlayers( "rollDice", clienttranslate( '${player_name} rolled ${rtnArray} and scored ${points_scored} points, new total: ${player_score} points' ),
             array(
                 'player_id' => $player_id,
                 'player_name' => self::getActivePlayerName(),
+                'player_score' => $player_score,
+                'points_scored' => $points_scored,
                 'rtnArray' => $rtnArray
             )
         );

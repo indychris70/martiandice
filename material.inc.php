@@ -32,6 +32,21 @@ $this->card_types = array(
 
 */
 
+$this->die_faces = array(
+    1 => array( 'name' => clienttranslate('Death Ray'),
+                'nametr' => self::_('Death Ray') ),
+    2 => array( 'name' => clienttranslate('Human'),
+                'nametr' => self::_('Human') ),
+    3 => array( 'name' => clienttranslate('Cow'),
+                'nametr' => self::_('Cow') ),
+    4 => array( 'name' => clienttranslate('Tank'),
+                'nametr' => self::_('Tank') ),
+    5 => array( 'name' => clienttranslate('Chicken'),
+                'nametr' => self::_('Chicken') ),
+    6 => array( 'name' => clienttranslate('Death Ray'),
+                'nametr' => self::_('Death Ray') ),
+);
+
 
 
 

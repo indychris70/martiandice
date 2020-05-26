@@ -18,16 +18,19 @@
 define([
     "dojo","dojo/_base/declare",
     "ebg/core/gamegui",
-    "ebg/counter"
-],
+    "ebg/counter",
+    "ebg/stock"
+    ],
 function (dojo, declare) {
     return declare("bgagame.martiandice", ebg.core.gamegui, {
         constructor: function(){
             console.log('martiandice constructor');
-              
+
             // Here, you can init the global variables of your user interface
             // Example:
             // this.myGlobalValue = 0;
+            this.diewidth = 60;
+            this.dieheight = 60;
 
         },
         
@@ -47,6 +50,22 @@ function (dojo, declare) {
         setup: function( gamedatas )
         {
             console.log( "Starting game setup" );
+
+            // Zone setup
+            // Zone control
+            // Player hand
+            // this.cows = new ebg.stock();
+            // this.cows.create( this, $('cows'), this.diewidth, this.dieheight );
+            // this.humans = new ebg.stock();
+            // this.humans.create( this, $('humans'), this.diewidth, this.dieheight );
+            // this.chickens = new ebg.stock();
+            // this.chickens.create( this, $('chickens'), this.diewidth, this.dieheight );
+            // this.tanks = new ebg.stock();
+            // this.tanks.create( this, $('tanks'), this.diewidth, this.dieheight );
+            // this.deathRays = new ebg.stock();
+            // this.deathRays.create( this, $('death_rays'), this.diewidth, this.dieheight );
+            // this.diceTray = new ebg.stock();
+            // this.diceTray.create( this, $('dice_tray'), this.diewidth, this.dieheight );
             
             // Setting up player boards
             for( var player_id in gamedatas.players )
@@ -275,6 +294,9 @@ function (dojo, declare) {
             console.log( notif );
             let cubes = document.querySelectorAll('.cube');
             const rollValues = notif.args.rtnArray;
+            const player_id = notif.args.player_id;
+            const points_scored = notif.args.points_scored;
+            this.scoreCtrl[player_id].incValue( points_scored )
             console.log("rolled values are ", rollValues);
             cubes.forEach(function (cube, index) {
                 cube.classList.forEach(className => {
