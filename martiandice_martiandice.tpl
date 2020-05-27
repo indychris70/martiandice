@@ -24,11 +24,15 @@
     
     Please REMOVE this comment before publishing your game on BGA
 -->
-
+<div id="actions">
+    <a id="rollDice" href="#" class="bgabutton bgabutton_blue">Roll!</a>
+    <a id="pass" href="#" class="bgabutton bgabutton_gray">Pass</a>
+</div>
 <div id="play_area">
 
-    <div id="die_tray">
-        <div class="scene">
+    <div id="dice_tray"></div>
+        <!-- dice
+        <div id="DIE_ID" class="scene">
             <div class="cube">
                 <div class="cube__face cube__face--3">C</div>
                 <div class="cube__face cube__face--4">T</div>
@@ -38,7 +42,8 @@
                 <div class="cube__face cube__face--6">D6</div>
             </div>
         </div>
-        <div class="scene">
+        END dice -->
+<!--        <div class="scene">
             <div class="cube">
                 <div class="cube__face cube__face--3">C</div>
                 <div class="cube__face cube__face--4">T</div>
@@ -47,10 +52,7 @@
                 <div class="cube__face cube__face--1">D1</div>
                 <div class="cube__face cube__face--6">D6</div>
             </div>
-        </div>
-
-        <a id="rollDice" href="#">Roll!</a>
-        <a id="pass" href="#">Pass</a>
+        </div> -->
     </div>
 
 
@@ -74,6 +76,17 @@
 var jstpl_some_game_item='<div class="my_game_item" id="my_game_item_${MY_ITEM_ID}"></div>';
 
 */
+
+var jstpl_die = '<div id="die_${die_id}" class="scene">\n' +
+    '            <div class="cube">\n' +
+    '                <div class="cube__face cube__face--3">C</div>\n' +
+    '                <div class="cube__face cube__face--4">T</div>\n' +
+    '                <div class="cube__face cube__face--5">Ch</div>\n' +
+    '                <div class="cube__face cube__face--2">H</div>\n' +
+    '                <div class="cube__face cube__face--1">D1</div>\n' +
+    '                <div class="cube__face cube__face--6">D6</div>\n' +
+    '            </div>\n' +
+    '        </div>'
 
 </script>  
 

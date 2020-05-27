@@ -19,7 +19,7 @@ define([
     "dojo","dojo/_base/declare",
     "ebg/core/gamegui",
     "ebg/counter",
-    "ebg/stock"
+    "ebg/zone"
     ],
 function (dojo, declare) {
     return declare("bgagame.martiandice", ebg.core.gamegui, {
@@ -31,6 +31,8 @@ function (dojo, declare) {
             // this.myGlobalValue = 0;
             this.diewidth = 60;
             this.dieheight = 60;
+            this.diceTray = new ebg.zone();
+            this.startingDice = 13;
 
         },
         
@@ -64,8 +66,12 @@ function (dojo, declare) {
             // this.tanks.create( this, $('tanks'), this.diewidth, this.dieheight );
             // this.deathRays = new ebg.stock();
             // this.deathRays.create( this, $('death_rays'), this.diewidth, this.dieheight );
-            // this.diceTray = new ebg.stock();
-            // this.diceTray.create( this, $('dice_tray'), this.diewidth, this.dieheight );
+
+
+            this.diceTray.create( this, 'dice_tray', this.diewidth, this.dieheight );
+
+
+            this.diceTray.setPattern( 'grid' );
             
             // Setting up player boards
             for( var player_id in gamedatas.players )
@@ -78,6 +84,11 @@ function (dojo, declare) {
             // TODO: Set up your game interface here, according to "gamedatas"
             dojo.query( '#rollDice' ).connect( 'onclick', this, 'rollDice' );
             dojo.query('#pass').connect('onclick', this, 'pass' );
+
+            for(let i = 1; i <= this.startingDice; i++) {
+                dojo.place( this.format_block( 'jstpl_die', { die_id: i }), 'dice_tray');
+                this.diceTray.placeInZone( 'die_' + i, null );
+            }
  
             // Setup game notifications to handle (see "setupNotifications" method below)
             this.setupNotifications();

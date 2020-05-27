@@ -87,12 +87,12 @@ HSL     111°, 67%, 51%  195°, 100%, 41% 55°, 100%, 50%  6.14,94.71%,55.49%
     border: 3px solid #e128bc;
 }
 
-#die_tray {
+#dice_tray {
     position: absolute;
     left: 0;
     top: 0;
-    width: 80%;
-    height: 80%;
+    width: 50%;
+    height: 70%;
     border: 1px solid #231f20;
 }
 
@@ -164,7 +164,7 @@ body { font-family: sans-serif; }
 .scene {
     width: 60px;
     height: 60px;
-    margin: 50px;
+    margin: 5px;
     perspective: 400px;
 }
 

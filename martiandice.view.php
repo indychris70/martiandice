@@ -38,6 +38,12 @@
         $players_nbr = count( $players );
 
         /*********** Place your code below:  ************/
+//        $this->page->begin_block( "martiandice_martiandice", "dice" );
+//        for( $die_id = 1; $die_id <= 4; $die_id++ ) {
+//            $this->page->insert_block( "dice", array(
+//                'DIE_ID' => $die_id
+//            ));
+//        }
 
 
         /*
