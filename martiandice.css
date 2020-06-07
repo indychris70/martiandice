@@ -88,13 +88,19 @@ HSL     111°, 67%, 51%  195°, 100%, 41% 55°, 100%, 50%  6.14,94.71%,55.49%
 }
 
 #dice_tray {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50%;
-    height: 70%;
-    border: 1px solid #231f20;
+    border: 2px solid #231f20;
+    min-width: 60px;
+    min-height: 60px;
 }
+
+/*#dice_tray {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 50%;*/
+/*    height: 70%;*/
+/*    border: 1px solid #231f20;*/
+/*}*/
 
 #death_rays {
     height: 70%;
@@ -106,6 +112,12 @@ HSL     111°, 67%, 51%  195°, 100%, 41% 55°, 100%, 50%  6.14,94.71%,55.49%
     border: 2px solid #43c92d;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 4px #43c92d;
+}
+
+#dice_tray_death_rays {
+    border: 2px solid #43c92d;
+    min-width: 60px;
+    min-height: 60px;
 }
 
 #tanks {
@@ -132,6 +144,12 @@ HSL     111°, 67%, 51%  195°, 100%, 41% 55°, 100%, 50%  6.14,94.71%,55.49%
     box-shadow: 0px 0px 4px 4px #008eca;
 }
 
+#dice_tray_humans {
+    border: 2px solid #008eca;
+    min-width: 60px;
+    min-height: 60px;
+}
+
 #cows {
     height: 27%;
     width: 32%;
@@ -142,6 +160,12 @@ HSL     111°, 67%, 51%  195°, 100%, 41% 55°, 100%, 50%  6.14,94.71%,55.49%
     border: 2px solid #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 4px #fff;
+}
+
+#dice_tray_cows {
+    border: 2px solid #fff;
+    min-width: 60px;
+    min-height: 60px;
 }
 
 #chickens {
@@ -156,6 +180,11 @@ HSL     111°, 67%, 51%  195°, 100%, 41% 55°, 100%, 50%  6.14,94.71%,55.49%
     box-shadow: 0px 0px 4px 4px #ffe600;
 }
 
+#dice_tray_chickens {
+    border: 2px solid #ffe600;
+    min-width: 60px;
+    min-height: 60px;
+}
 
 * { box-sizing: border-box; }
 

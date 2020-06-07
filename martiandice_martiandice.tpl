@@ -27,10 +27,17 @@
 <div id="actions">
     <a id="rollDice" href="#" class="bgabutton bgabutton_blue">Roll!</a>
     <a id="pass" href="#" class="bgabutton bgabutton_gray">Pass</a>
+    <a id="moveTanks" href="#" class="bgabutton bgabutton_gray">Move Tanks</a>
 </div>
 <div id="play_area">
 
     <div id="dice_tray"></div>
+            <div id="dice_tray_humans"></div>
+            <div id="dice_tray_chickens"></div>
+            <div id="dice_tray_cows"></div>
+            <div id="dice_tray_death_rays"></div>
+
+
         <!-- dice
         <div id="DIE_ID" class="scene">
             <div class="cube">
@@ -78,7 +85,7 @@ var jstpl_some_game_item='<div class="my_game_item" id="my_game_item_${MY_ITEM_I
 */
 
 var jstpl_die = '<div id="die_${die_id}" class="scene">\n' +
-    '            <div class="cube">\n' +
+    '            <div id="cube_${die_id}" class="cube">\n' +
     '                <div class="cube__face cube__face--3">C</div>\n' +
     '                <div class="cube__face cube__face--4">T</div>\n' +
     '                <div class="cube__face cube__face--5">Ch</div>\n' +
